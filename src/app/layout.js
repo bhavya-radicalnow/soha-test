@@ -1,4 +1,6 @@
 import { Geist, Geist_Mono, Onest } from "next/font/google";
+import 'react-loading-skeleton/dist/skeleton.css';
+
 import "./globals.css";
 
 const geistSans = Geist({

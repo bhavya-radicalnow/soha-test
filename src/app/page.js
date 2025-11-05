@@ -8,6 +8,7 @@ import HeroPage from "./hero";
 import PublicationsSection from "./research";
 import PatientStories from "./story";
 
+
 export default function Home() {
   return (
     <>

@@ -26,3 +26,13 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes float-horizontal {
+0%, 100% { transform: translateX(-95); }
+  70% { transform: translateX(10px) ; } /* move slightly right */
+}
+
+.animate-float-horizontal {
+  animation: float-horizontal 3s ease-in-out infinite;
+}
+

@@ -1,54 +1,51 @@
-// app/components/PatientStories.jsx
 "use client";
 
 import Image from "next/image";
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 
 export default function PatientStories() {
   const stories = [
     {
       name: "Devon Lane",
       city: "Bangalore",
-      avatar: "/devon.png",
+      avatar: "/devon.webp",
       text:
         "Dr. Chaithra and her team were with us at every step. After years of struggle, we finally welcomed our baby girl thanks to her expertise and compassion.",
     },
     {
       name: "Carol Danvers",
       city: "Bangalore",
-      avatar: "/carol.png",
+      avatar: "/carol.webp",
       text:
         "Dr. Chaithra and her team were with us at every step. After years of struggle, we finally welcomed our baby girl thanks to her expertise and compassion.",
     },
     {
       name: "Karen Starr",
       city: "Bangalore",
-      avatar: "/karen.png",
+      avatar: "/karen.webp",
       text:
         "Dr. Chaithra and her team were with us at every step. After years of struggle, we finally welcomed our baby girl thanks to her expertise and compassion.",
     },
   ];
 
-  // slider state for mobile/tablet
-  const scroller = useRef(null);
-  const [idx, setIdx] = useState(0);
+  const [loaded, setLoaded] = useState(false);
+  const [emblaRef] = useEmblaCarousel(
+    {
+      loop: true,
+      align: "center",
+      skipSnaps: false,
+    },
+    [Autoplay({ delay: 3000, stopOnInteraction: false })]
+  );
 
   useEffect(() => {
-    const el = scroller.current;
-    if (!el) return;
-    const onScroll = () => {
-      const i = Math.round(el.scrollLeft / el.clientWidth);
-      setIdx(i);
-    };
-    el.addEventListener("scroll", onScroll, { passive: true });
-    return () => el.removeEventListener("scroll", onScroll);
+    const timer = setTimeout(() => setLoaded(true), 1000);
+    return () => clearTimeout(timer);
   }, []);
-
-  const scrollTo = (i) => {
-    const el = scroller.current;
-    if (!el) return;
-    el.scrollTo({ left: i * el.clientWidth, behavior: "smooth" });
-  };
 
   return (
     <main className="bg-white">
@@ -60,49 +57,34 @@ export default function PatientStories() {
           <div className="pointer-events-none absolute -right-24 top-28 h-[28rem] w-[28rem] rotate-12 opacity-15
                         bg-[radial-gradient(circle,_rgba(255,255,255,0.6)_1px,_transparent_1.5px)] bg-[length:10px_10px]" />
 
-          <p className="mb-3 font-semibold text-rose-300">• Patient Stories</p>
+          <p className="mb-3 font-semibold text-[#FF70A3]">• Patient Stories</p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
-            Heartfelt Stories of <span className="text-rose-300">Hope</span>
+            Heartfelt Stories of <span className="text-[#FF70A3]">Hope</span>
             <br className="hidden sm:block" /> and Success
           </h2>
 
-          {/* Desktop / Large screens: 3-up grid */}
-          <div className="mt-10 hidden lg:grid lg:grid-cols-3 lg:gap-8">
+          {/* Desktop layout */}
+          <div className="hidden lg:grid mt-10 grid-cols-3 gap-8">
             {stories.map((s, i) => (
-              <TestimonialCard key={i} data={s} highlight={i === 1} />
+              <TestimonialCard key={i} data={s} highlight={i === 1} loaded={loaded} />
             ))}
           </div>
 
-          {/* Mobile/Tablet: full-width slider */}
+          {/* Mobile / Tablet Carousel */}
           <div
-            ref={scroller}
-            className="mt-8 grid grid-flow-col auto-cols-[100%] gap-6 overflow-x-auto lg:hidden snap-x snap-mandatory pb-2
-                     [scrollbar-width:none] [-ms-overflow-style:none]"
-            style={{ WebkitOverflowScrolling: "touch" }}
+            className="lg:hidden mt-10 overflow-hidden"
+            ref={emblaRef}
           >
-            <style>{`
-  .hide-scrollbar::-webkit-scrollbar { display: none; }
-  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-`}</style>
-
-            {stories.map((s, i) => (
-              <div key={i} className="snap-start">
-                <TestimonialCard data={s} highlight={i === 1} mobile />
-              </div>
-            ))}
-          </div>
-
-          {/* Dots (mobile/tablet) */}
-          <div className="mt-6 flex items-center justify-center gap-3 lg:hidden">
-            {stories.map((_, i) => (
-              <button
-                key={i}
-                aria-label={`Go to slide ${i + 1}`}
-                onClick={() => scrollTo(i)}
-                className={`h-2.5 w-2.5 rounded-full transition ${idx === i ? "bg-white" : "bg-white/40"
-                  }`}
-              />
-            ))}
+            <div className="flex">
+              {stories.map((s, i) => (
+                <div
+                  key={i}
+                  className="flex-[0_0_100%] px-3 sm:px-4"
+                >
+                  <TestimonialCard data={s} highlight={i === 1} mobile loaded={loaded} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -110,13 +92,13 @@ export default function PatientStories() {
   );
 }
 
-function TestimonialCard({ data, highlight = false, mobile = false }) {
+function TestimonialCard({ data, highlight = false, mobile = false, loaded }) {
   return (
     <article
       className={[
-        "rounded-[22px] ring-1 ring-white/10",
+        "rounded-[22px] ring-1 ring-white/10 transition-all duration-500",
         highlight
-          ? "bg-rose-400 text-white"
+          ? "bg-[#FF70A3] text-white"
           : "bg-white/5 backdrop-blur-[2px] text-white/90",
         mobile ? "p-6" : "p-7",
       ].join(" ")}
@@ -125,27 +107,62 @@ function TestimonialCard({ data, highlight = false, mobile = false }) {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="relative h-10 w-10 overflow-hidden rounded-full ring-2 ring-white/40">
-            <Image src={data.avatar} alt={data.name} fill className="object-cover" />
+            {!loaded ? (
+              <Skeleton circle height={40} width={40} />
+            ) : (
+              <Image
+                src={data.avatar}
+                alt={data.name}
+                fill
+                className="object-cover"
+              />
+            )}
           </div>
           <div>
-            <div className="text-sm font-semibold">{data.name}</div>
-            <div className={`${highlight ? "text-white/90" : "text-white/70"} text-xs`}>{data.city}</div>
+            {!loaded ? (
+              <>
+                <Skeleton width={80} height={14} />
+                <Skeleton width={50} height={10} />
+              </>
+            ) : (
+              <>
+                <div className="text-sm font-semibold">{data.name}</div>
+                <div
+                  className={`${highlight ? "text-white/90" : "text-white/70"} text-xs`}
+                >
+                  {data.city}
+                </div>
+              </>
+            )}
           </div>
         </div>
 
-        {/* quote icon */}
-        <svg
-          viewBox="0 0 24 24"
-          className={`h-8 w-8 ${highlight ? "fill-white/80" : "fill-white/60"}`}
-        >
-          <path d="M9 7h3L9 13v4H5v-4l3-6zm10 0h3l-3 6v4h-4v-4l3-6z" />
-        </svg>
+        {loaded ? (
+          <svg
+            viewBox="0 0 24 24"
+            className={`h-8 w-8 ${highlight ? "fill-white/80" : "fill-white/60"}`}
+          >
+            <path d="M9 7h3L9 13v4H5v-4l3-6zm10 0h3l-3 6v4h-4v-4l3-6z" />
+          </svg>
+        ) : (
+          <Skeleton circle width={30} height={30} />
+        )}
       </div>
 
       {/* Body */}
-      <p className={`mt-4 text-sm leading-6 ${highlight ? "text-white" : "text-white/85"}`}>
-        “{data.text}”
-      </p>
+      <div className="mt-4">
+        {!loaded ? (
+          <Skeleton count={3} height={12} style={{ marginBottom: "5px" }} />
+        ) : (
+          <p
+            className={`text-sm leading-6 ${
+              highlight ? "text-white" : "text-white/85"
+            }`}
+          >
+            “{data.text}”
+          </p>
+        )}
+      </div>
     </article>
   );
 }

@@ -1,52 +1,107 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
 export default function FieldOfExpertise() {
-  const images = [
-    "/highrisk.png",
-    "/laproscopic.png",
-    "/ovarian.png",
-    "/donor.png",
-    "/poor-ovarian.png",
-    "/implantation.png",
-    "/ultrasonography.png",
-    "/hands.png",
+  const expertise = [
+    {
+      src: "/highrick.webp",
+      hoverSrc: "/WHITE.webp",
+      title: "High-risk obstetrics; PESA/TESA andrology procedures",
+    },
+    {
+      src: "/laproscopic.webp",
+      hoverSrc: "/WHITE-2.webp",
+      title: "Minimally invasive hystero-laparoscopic surgeries",
+    },
+    {
+      src: "/ovarian.webp",
+      hoverSrc: "/ovarian-white.webp",
+      title: "Ovarian Disorders, IUI, IVF, ICSI",
+    },
+    {
+      src: "/donor.webp",
+      hoverSrc: "/donor-white.webp",
+      title: "Donor & surrogacy programs; PGT/PGD, ERA",
+    },
+    {
+      src: "/poor-ovarian.webp",
+      hoverSrc: "/poor-ovarian-white.webp",
+      title: "Poor ovarian reserve management",
+    },
+    {
+      src: "/implantation.webp",
+      hoverSrc: "/implantation-white.webp",
+      title: "Recurrent implantation failure; immunological infertility",
+    },
+    {
+      src: "/ultrasonography.webp",
+      hoverSrc: "/ultrasonography-white.webp",
+      title: "3D ultrasonography, Dopplers; recurrent pregnancy loss",
+    },
+    {
+      src: "/hands.webp",
+      hoverSrc: "/hands-white.webp",
+      title: "Compassionate care & patient support",
+    },
   ];
 
   return (
     <main className="bg-white">
-      <section className="mx-auto max-w-7xl px-4 py-12 md:py-16 lg:px-8">
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8 lg:px-10 py-10 md:py-16">
         <div
-          className="rounded-[28px] p-6 sm:p-8 lg:p-10"
+          className="rounded-[28px] p-6 sm:p-8 md:p-10 lg:p-12"
           style={{
             background:
               "linear-gradient(100.24deg, rgba(252, 241, 236, 0.8) 20.09%, rgba(228, 243, 253, 0.6) 48.04%, rgba(252, 243, 239, 0.5) 80.99%)",
           }}
         >
-          <h3 className="text-3xl font-extrabold text-[#24305a] sm:text-4xl">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-extrabold text-[#24305a] text-center leading-tight">
             Field of Expertise
           </h3>
-          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-            {images.map((src, i) => (
-              <div
-                key={i}
-                className="rounded-2xl bg-white shadow-sm p-4 sm:p-5 flex items-center justify-center transition hover:shadow-md"
-              >
-                <div className="relative h-24 w-24 sm:h-28 sm:w-28">
-                  <Image
-                    src={src}
-                    alt=""
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 768px) 28vw, (max-width: 1200px) 16vw, 140px"
-                    priority={i < 4}
-                  />
-                </div>
-              </div>
+
+          <div className="mt-8 grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6 md:gap-8 xl:gap-12">
+            {expertise.map((item, i) => (
+              <ExpertiseCard key={i} item={item} />
             ))}
           </div>
-
         </div>
       </section>
     </main>
+  );
+}
+
+function ExpertiseCard({ item }) {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <div className="group flex flex-col items-center justify-start rounded-3xl bg-white shadow-md transition-all duration-500 hover:bg-[#ff69b4] hover:shadow-2xl hover:scale-[1.03] px-4 py-6 sm:p-6 md:p-7 lg:p-8">
+      <div className="relative w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 mb-5">
+
+        {!loaded && (
+          <div className="absolute inset-0 animate-pulse rounded-2xl bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200" />
+        )}
+
+        <Image
+          src={item.src}
+          alt={item.title}
+          fill
+          className={`object-contain transition-opacity duration-500 group-hover:opacity-0 ${loaded ? "opacity-100" : "opacity-0"}`}
+          onLoadingComplete={() => setLoaded(true)}
+        />
+
+        <Image
+          src={item.hoverSrc}
+          alt={`${item.title} hover`}
+          fill
+          className="object-contain opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        />
+      </div>
+
+      <p className="text-center text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-[#24305a] transition-colors duration-500 group-hover:text-white">
+        {item.title}
+      </p>
+    </div>
   );
 }

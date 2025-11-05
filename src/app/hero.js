@@ -1,79 +1,163 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import ContactModal from "@/components/ContactModal";
+import Skeleton from "react-loading-skeleton";
 
 export default function HeroPage() {
+  const [open, setOpen] = useState(false);
+  const [loaded, setLoaded] = useState(false); // overall page shimmer control
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  // Simulate data loading (like API fetch)
+  useEffect(() => {
+    const timer = setTimeout(() => setLoaded(true), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  async function handleSubmit(values) {
+    console.log("Lead form submitted:", values);
+  }
+
   return (
     <main className="bg-white">
       <section className="relative overflow-hidden">
-        <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
-          {/* GRID */}
-          <div className="grid grid-cols-1 gap-10 py-10 md:grid-cols-12 md:items-center md:py-14 lg:gap-6 lg:py-20">
-            {/* LEFT — TEXT (overlaps image on md+) */}
-            <div className="order-2 md:order-1 md:col-span-6 lg:col-span-6 relative z-20">
-              <h1 className="text-4xl font-semibold leading-tight tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
-                Dr. Chaithra S K
-              </h1>
-
-              <p className="mt-4 text-xl leading-8 text-gray-800 sm:text-2xl">
-                Leading IVF and Reproductive
-                <br className="hidden sm:block" />
-                Medicine expert in Bangalore
-              </p>
-
-              <p className="mt-4 text-sm text-gray-600">MBBS, MS-OBG, FRM, DRM</p>
-
-              <div className="mt-8">
-                <a
-                  href="#book"
-                  className="inline-flex items-center gap-2 rounded-2xl bg-rose-400 px-6 py-4 text-base font-semibold text-white shadow-sm transition hover:bg-rose-500"
-                >
-                  Book A Consultation
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
-              </div>
+        <div className="relative mx-auto max-w-7xl px-7 lg:px-25">
+          <div className="grid grid-cols-1 md:grid-cols-12 items-center gap-10 md:gap-6 py-12 lg:py-20">
+            
+            {/* LEFT — TEXT */}
+            <div className="order-2 md:order-1 md:col-span-6 relative z-20">
+              {loaded ? (
+                <>
+                  <h1 className="text-3xl sm:text-4xl md:text-[3rem] lg:text-6xl xl:text-[5rem] font-semibold leading-tight tracking-tight text-gray-900">
+                    Dr. Chaithra S K
+                  </h1>
+                  <p className="mt-4 text-lg sm:text-2xl md:text-2xl lg:text-3xl leading-relaxed text-gray-800">
+                    Leading IVF and Reproductive <br className="hidden sm:block" />
+                    Medicine Expert in Bangalore
+                  </p>
+                  <p className="mt-4 text-sm text-gray-600">MBBS, MS-OBG, FRM, DRM</p>
+                  <div className="mt-8">
+                    <button
+                      type="button"
+                      onClick={() => setOpen(true)}
+                      className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[rgba(255,112,163,1)] text-white font-semibold shadow-sm transition-all duration-300 hover:bg-pink-500 hover:scale-[1.02] pl-15 px-[2rem] py-[1.2rem] text-sm sm:px-[5rem] sm:py-[1.6rem] sm:text-base md:px-[2rem] md:py-[1.2rem] md:text-lg lg:px-[3rem] lg:py-[1.7rem] lg:text-xl xl:px-[5rem] xl:py-[1.5rem] 2xl:px-[9rem] 2xl:py-[2.2rem] 2xl:text-2xl"
+                    >
+                      Book A Consultation
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4 sm:h-5 sm:w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </>
+              ) : (
+                // Skeleton placeholder for text and button
+                <div className="space-y-4">
+                  <Skeleton height={60} width="80%" />
+                  <Skeleton height={30} width="90%" />
+                  <Skeleton height={20} width="40%" />
+                  <div className="pt-4">
+                    <Skeleton height={60} width={250} borderRadius={30} />
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* RIGHT — STACK: BG + DOCTOR (pulled left on md+) */}
-            <div className="order-1 md:order-2 md:col-span-6 lg:col-span-6 md:-ml-16 lg:-ml-24 xl:-ml-28 justify-self-center md:justify-self-end">
-              <div className="relative aspect-[3/4] w-72 sm:w-80 md:w-[28rem] lg:w-[34rem]">
-                {/* background behind */}
-                <Image
-                  src="/bg.png"
-                  alt=""
-                  fill
-                  priority
-                  className="z-0 object-contain object-center pointer-events-none select-none"
-                  aria-hidden
-                  sizes="(max-width: 768px) 20rem, (max-width: 1024px) 28rem, 34rem"
-                />
-                {/* doctor in front */}
-                <Image
-                  src="/doctor-img.png"
-                  alt="Dr. Chaithra S K"
-                  fill
-                  priority
-                  className="z-10 object-contain"
-                  sizes="(max-width: 768px) 20rem, (max-width: 1024px) 28rem, 34rem"
-                />
+            {/* RIGHT — IMAGE with shimmer */}
+            <div className="order-1 md:order-2 md:col-span-6 justify-self-center md:justify-self-end -ml-2 sm:-ml-4 md:-ml-6 lg:-ml-12 xl:-ml-24">
+              <div className="relative aspect-[4/5] w-[19rem] sm:w-[20rem] md:w-[28rem] lg:w-[40rem] xl:w-[45rem] 2xl:w-[50rem]">
+                {!loaded && (
+                  <Skeleton height="100%" width="100%" borderRadius="1rem" />
+                )}
+
+                {loaded && (
+                  <>
+                    <Image
+                      src="/bg.webp"
+                      alt=""
+                      fill
+                      priority
+                      className="z-0 object-contain object-center pointer-events-none select-none"
+                      aria-hidden
+                    />
+                    <Image
+                      src="/doctor.webp"
+                      alt="Dr. Chaithra S K"
+                      fill
+                      priority
+                      onLoad={() => setImageLoaded(true)}
+                      className={`z-10 object-contain object-center pointer-events-none select-none transition-opacity duration-500 ${
+                        imageLoaded ? "opacity-100" : "opacity-0"
+                      }`}
+                    />
+                  </>
+                )}
               </div>
             </div>
           </div>
 
-          {/* STATS — FULL WIDTH, OVERLAPS BOTTOM ON DESKTOP */}
-          <div className="relative z-30 md:-mt-20 lg:-mt-28 xl:-mt-60">
-            <div className="w-full rounded-3xl bg-rose-100/70 px-6 py-8 backdrop-blur-[6px] shadow-sm sm:px-10 sm:py-10">
-              {/* The dl is width-fit so items stay on the left without dummy slots */}
-              <dl className="w-fit grid grid-cols-2 gap-y-8 gap-x-12 sm:grid-cols-4 lg:gap-x-16">
-                <Stat label="IVF/ICSI Procedures" value="1000+" />
-                <Stat label="IVF Success Rate" value="65%" />
-                <Stat label="Couples Treated" value="6000" />
-                <Stat label="Approval Rating on Practo" value="96%" />
-              </dl>
+          {/* STATS SECTION */}
+          <div className="relative z-30 md:-mt-20 lg:-mt-32 xl:-mt-80">
+            <div className="w-full rounded-3xl bg-[rgba(236,102,150,0.16)] px-6 py-8 backdrop-blur-[6px] shadow-sm sm:px-8 sm:py-10">
+              {loaded ? (
+                <dl className="w-fit grid grid-cols-2 gap-y-12 gap-x-12 sm:grid-cols-4 xl:gap-x-0">
+                  <Stat label="IVF/ICSI Procedures" value="1000+" />
+                  <Stat label="IVF Success Rate" value="65%" />
+                  <Stat label="Couples Treated" value="6000" />
+                  <Stat label="Approval Rating on Practo" value="96%" />
+                </dl>
+              ) : (
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                  {Array(4)
+                    .fill(0)
+                    .map((_, i) => (
+                      <div key={i} className="text-center">
+                        <Skeleton height={40} width={80} />
+                        <Skeleton height={20} width={100} />
+                      </div>
+                    ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
       </section>
+
+      {/* Contact Modal */}
+      {loaded && (
+        <ContactModal
+          open={open}
+          onClose={() => setOpen(false)}
+          onSubmit={handleSubmit}
+          fields={[
+            { type: "text", name: "name", label: "Name", placeholder: "Your full name", required: true },
+            { type: "email", name: "email", label: "Email Id", placeholder: "you@example.com", required: true },
+            { type: "tel", name: "phone", label: "Phone no", placeholder: "10-digit mobile", required: true },
+            {
+              type: "select",
+              name: "location",
+              label: "Preferred Location",
+              placeholder: "Choose Location",
+              options: ["Bhattarahalli", "Kalyan Nagar", "Hoskote", "Hennur"],
+              required: true,
+            },
+          ]}
+          submitLabel="Submit"
+          subtitle="We’ll call you back to confirm slot."
+        />
+      )}
     </main>
   );
 }
@@ -90,4 +174,3 @@ function Stat({ label, value }) {
     </div>
   );
 }
-
