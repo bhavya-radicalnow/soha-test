@@ -81,16 +81,25 @@ export default function AboutSection() {
 
               {/* Experience Badge */}
               {loaded ? (
-                <div className="absolute left-[-10px] top-[12%] sm:left-[-20px] sm:top-[10%] md:left-[-20px] md:top-[9%] lg:left-[-40px] lg:top-[7%] xl:left-[-40px] xl:top-[6%] 2xl:left-[-25px] 2xl:top-[10%] animate-float-horizontal">
-                  <Image
-                    src="/exp-badge.webp"
-                    alt="14+ years of experience"
-                    width={160}
-                    height={160}
-                    className="w-[90px] sm:w-[110px] md:w-[130px] lg:w-[150px] xl:w-[170px] 2xl:w-[150px] h-auto"
-                    priority
-                  />
-                </div>
+               <div className="absolute 
+  left-[-10px] top-[12%]
+  sm:left-[-20px] sm:top-[10%]
+  md:left-[-10px] md:top-[9%]
+  lg:left-[-25px] lg:top-[7%]
+  xl:left-[-25px] xl:top-[5%]
+  2xl:left-[-15px] 2xl:top-[7%]
+  animate-float-horizontal
+">
+  <Image
+    src="/exp-badge.webp"
+    alt="14+ years of experience"
+    width={150}
+    height={150}
+    className="w-[70px] sm:w-[85px] md:w-[90px] lg:w-[120px] xl:w-[120px] 2xl:w-[120px] h-auto"
+    priority
+  />
+</div>
+
               ) : (
                 <div className="absolute left-[-10px] top-[12%]">
                   <Skeleton circle width={100} height={100} />
