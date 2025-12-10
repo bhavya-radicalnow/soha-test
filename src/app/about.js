@@ -17,7 +17,41 @@ export default function AboutSection() {
   }, []);
 
   async function handleSubmit(values) {
-    console.log("AboutSection lead:", values);
+    try {
+      // Basic phone validation: 10 digits (India-style). Adjust if you need +91 etc.
+      const phone = (values.phone || "").toString().replace(/\s+/g, "");
+      if (!/^\d{10}$/.test(phone)) {
+        throw new Error("Please enter a valid 10-digit phone number.");
+      }
+
+      // Capture UTM params from current URL (if present)
+      const searchParams = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : new URLSearchParams();
+      const utm_campaign = searchParams.get("utm_campaign") || "";
+      const utm_source = searchParams.get("utm_source") || "";
+      const utm_medium = searchParams.get("utm_medium") || "";
+      const utm_term = searchParams.get("utm_term") || "";
+
+      const payload = {
+        name: values.name || "",
+        email: values.email || "",
+        phone,
+        location: values.location || values.Location || "",
+        utm_campaign,
+        utm_source,
+        utm_medium,
+        utm_term,
+      };
+
+      // POST to your Next.js server route which forwards to Google Apps Script
+      fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+    } catch (err) {
+      console.error("Network / unexpected error while submitting lead:", err);
+      throw err;
+    }
   }
 
   return (
@@ -48,13 +82,13 @@ export default function AboutSection() {
 
               {/* Experience Badge */}
               {loaded ? (
-                <div className="absolute left-[-10px] top-[12%] sm:left-[-20px] sm:top-[10%] md:left-[-25px] md:top-[9%] lg:left-[-30px] lg:top-[7%] xl:left-[-40px] xl:top-[6%] 2xl:left-[-45px] 2xl:top-[5%] animate-float-horizontal">
+                <div className="absolute left-[-10px] top-[12%] sm:left-[-20px] sm:top-[10%] md:left-[-20px] md:top-[9%] lg:left-[-40px] lg:top-[7%] xl:left-[-40px] xl:top-[6%] 2xl:left-[-25px] 2xl:top-[10%] animate-float-horizontal">
                   <Image
                     src="/exp-badge.webp"
                     alt="14+ years of experience"
                     width={160}
                     height={160}
-                    className="w-[90px] sm:w-[110px] md:w-[130px] lg:w-[150px] xl:w-[170px] 2xl:w-[190px] h-auto"
+                    className="w-[90px] sm:w-[110px] md:w-[130px] lg:w-[150px] xl:w-[170px] 2xl:w-[150px] h-auto"
                     priority
                   />
                 </div>
@@ -90,11 +124,11 @@ export default function AboutSection() {
            
               <>
                 <p className="mb-2 text-sm font-semibold text-[#FF70A3] sm:text-base lg:text-lg">
-                  • About
+                  About
                 </p>
 
                 <h2 className="text-2xl sm:text-3xl md:text-2xl lg:text-3xl xl:text-3xl font-extrabold leading-tight text-[#24305a] max-w-3xl">
-                  Turning Dreams of Family
+                  Turning Dreams of Families
                   <br className="hidden sm:block" /> into Reality
                 </h2>
 

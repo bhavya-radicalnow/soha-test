@@ -7,9 +7,47 @@ import ContactModal from "@/components/ContactModal";
 export default function FooterCTA() {
   const [open, setOpen] = useState(false);
 
+
   async function handleSubmit(values) {
-    // TODO: Replace with your API call
-    console.log("Footer lead:", values);
+    try {
+      // Normalize & validate phone (simple 10-digit India mobile)
+      const phone = (values.phone || "").toString().replace(/\s+/g, "");
+      if (!/^\d{10}$/.test(phone)) {
+        throw new Error("Please enter a valid 10-digit phone number.");
+      }
+
+      // Capture UTM params from URL
+      const searchParams =
+        typeof window !== "undefined"
+          ? new URLSearchParams(window.location.search)
+          : new URLSearchParams();
+
+      const utm_campaign = searchParams.get("utm_campaign") || "";
+      const utm_source = searchParams.get("utm_source") || "";
+      const utm_medium = searchParams.get("utm_medium") || "";
+      const utm_term = searchParams.get("utm_term") || "";
+
+      const payload = {
+        name: values.name || "",
+        email: values.email || "",
+        phone,
+        location: values.location || values.Location || "",
+        utm_campaign,
+        utm_source,
+        utm_medium,
+        utm_term,
+      };
+
+      // POST to Next.js server route
+      fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+    } catch (err) {
+      console.error("Network / unexpected error:", err);
+      throw err;
+    }
   }
 
   return (

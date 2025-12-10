@@ -57,7 +57,7 @@ export default function PatientStories() {
           <div className="pointer-events-none absolute -right-24 top-28 h-[28rem] w-[28rem] rotate-12 opacity-15
                         bg-[radial-gradient(circle,_rgba(255,255,255,0.6)_1px,_transparent_1.5px)] bg-[length:10px_10px]" />
 
-          <p className="mb-3 font-semibold text-[#FF70A3]">• Patient Stories</p>
+          <p className="mb-3 font-semibold text-[#FF70A3]">Patient Stories</p>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
             Heartfelt Stories of <span className="text-[#FF70A3]">Hope</span>
             <br className="hidden sm:block" /> and Success

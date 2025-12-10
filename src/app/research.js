@@ -31,7 +31,7 @@ export default function PublicationsSection() {
   return (
     <main className="bg-white">
       <section className="mx-auto max-w-7xl px-4 py-12 md:py-16 lg:px-8">
-        <p className="mb-3 font-semibold text-[#FF70A3]">• Articles & Publications</p>
+        <p className="mb-3 font-semibold text-[#FF70A3]">Articles & Publications</p>
 
         <h2 className="text-3xl font-extrabold leading-tight text-[#24305a] sm:text-4xl lg:text-5xl">
           Research & Writings by <br />

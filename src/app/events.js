@@ -38,11 +38,11 @@ export default function EventsConferences() {
   return (
     <main className="bg-white">
       <section className="mx-auto max-w-7xl px-4 py-12 md:py-16 lg:px-8">
-        <p className="mb-2 font-semibold text-[#FF70A3]">• Events & Conferences</p>
+        <p className="mb-2 font-semibold text-[#FF70A3] sm:text-4xl lg:text-5xl">Events & Conferences</p>
 
-        <h2 className="text-2xl font-extrabold leading-tight text-[#24305a] sm:text-4xl lg:text-5xl">
+        {/* <h2 className="text-2xl font-extrabold leading-tight text-[#24305a] sm:text-4xl lg:text-5xl">
           Attended by Dr. Chaithra S K
-        </h2>
+        </h2> */}
 
         <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {events.map((e, i) => (

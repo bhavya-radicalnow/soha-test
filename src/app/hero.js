@@ -17,7 +17,37 @@ export default function HeroPage() {
   }, []);
 
   async function handleSubmit(values) {
-    console.log("Lead form submitted:", values);
+    try {
+      const phone = (values.phone || "").toString().replace(/\s+/g, "");
+      if (!/^\d{10}$/.test(phone)) {
+        throw new Error("Please enter a valid 10-digit phone number.");
+      }
+      // Capture UTM params from current URL (if any)
+      const searchParams = new URLSearchParams(
+        typeof window !== "undefined" ? window.location.search : ""
+      );
+      const utm_campaign = searchParams.get("utm_campaign") || "";
+      const utm_source = searchParams.get("utm_source") || "";
+      const utm_medium = searchParams.get("utm_medium") || "";
+      const utm_term = searchParams.get("utm_term") || "";
+
+      const payload = {
+        ...values,
+        utm_campaign,
+        utm_source,
+        utm_medium,
+        utm_term,
+      };
+
+      fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+    } catch (err) {
+      console.error("Network error submitting lead:", err);
+      throw err;
+    }
   }
 
   return (
@@ -25,7 +55,6 @@ export default function HeroPage() {
       <section className="relative overflow-hidden">
         <div className="relative mx-auto max-w-7xl px-7 lg:px-25">
           <div className="grid grid-cols-1 md:grid-cols-12 items-center gap-10 md:gap-6 py-12 lg:py-20">
-            
             {/* LEFT — TEXT */}
             <div className="order-2 md:order-1 md:col-span-6 relative z-20">
               {loaded ? (
@@ -34,10 +63,13 @@ export default function HeroPage() {
                     Dr. Chaithra S K
                   </h1>
                   <p className="mt-4 text-lg sm:text-2xl md:text-2xl lg:text-3xl leading-relaxed text-gray-800">
-                    Leading IVF and Reproductive <br className="hidden sm:block" />
+                    Leading IVF and Reproductive{" "}
+                    <br className="hidden sm:block" />
                     Medicine Expert in Bangalore
                   </p>
-                  <p className="mt-4 text-sm text-gray-600">MBBS, MS-OBG, FRM, DRM</p>
+                  <p className="mt-4 text-sm text-gray-600">
+                    MBBS, MS-OBG, FRM, DRM
+                  </p>
                   <div className="mt-8">
                     <button
                       type="button"
@@ -111,6 +143,7 @@ export default function HeroPage() {
           {/* STATS SECTION */}
           <div className="relative z-30 md:-mt-20 lg:-mt-32 xl:-mt-80">
             <div className="w-full rounded-3xl bg-[rgba(236,102,150,0.16)] px-6 py-8 backdrop-blur-[6px] shadow-sm sm:px-8 sm:py-10">
+              
               {loaded ? (
                 <dl className="w-fit grid grid-cols-2 gap-y-12 gap-x-12 sm:grid-cols-4 xl:gap-x-0">
                   <Stat label="IVF/ICSI Procedures" value="1000+" />
@@ -142,9 +175,27 @@ export default function HeroPage() {
           onClose={() => setOpen(false)}
           onSubmit={handleSubmit}
           fields={[
-            { type: "text", name: "name", label: "Name", placeholder: "Your full name", required: true },
-            { type: "email", name: "email", label: "Email Id", placeholder: "you@example.com", required: true },
-            { type: "tel", name: "phone", label: "Phone no", placeholder: "10-digit mobile", required: true },
+            {
+              type: "text",
+              name: "name",
+              label: "Name",
+              placeholder: "Your full name",
+              required: true,
+            },
+            {
+              type: "email",
+              name: "email",
+              label: "Email Id",
+              placeholder: "you@example.com",
+              required: true,
+            },
+            {
+              type: "tel",
+              name: "phone",
+              label: "Phone no",
+              placeholder: "10-digit mobile",
+              required: true,
+            },
             {
               type: "select",
               name: "location",
