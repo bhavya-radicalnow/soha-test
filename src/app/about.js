@@ -24,7 +24,6 @@ export default function AboutSection() {
         throw new Error("Please enter a valid 10-digit phone number.");
       }
 
-      // Capture UTM params from current URL (if present)
       const searchParams = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : new URLSearchParams();
       const utm_campaign = searchParams.get("utm_campaign") || "";
       const utm_source = searchParams.get("utm_source") || "";
