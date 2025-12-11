@@ -60,7 +60,7 @@ export default function AboutSection() {
           {/* Left Image Section */}
           <div className="md:col-span-6 relative flex justify-center md:justify-start">
             <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl">
-              
+
               {/* Main Image */}
               <div className="relative overflow-hidden rounded-3xl bg-[#EDEDED]">
                 <div className="relative aspect-[4/5] w-full">
@@ -81,7 +81,7 @@ export default function AboutSection() {
 
               {/* Experience Badge */}
               {loaded ? (
-               <div className="absolute 
+                <div className="absolute 
   left-[-10px] top-[12%]
   sm:left-[-20px] sm:top-[10%]
   md:left-[-10px] md:top-[9%]
@@ -90,15 +90,15 @@ export default function AboutSection() {
   2xl:left-[-15px] 2xl:top-[7%]
   animate-float-horizontal
 ">
-  <Image
-    src="/exp-badge.webp"
-    alt="14+ years of experience"
-    width={150}
-    height={150}
-    className="w-[70px] sm:w-[85px] md:w-[90px] lg:w-[120px] xl:w-[120px] 2xl:w-[120px] h-auto"
-    priority
-  />
-</div>
+                  <Image
+                    src="/exp-badge.webp"
+                    alt="14+ years of experience"
+                    width={150}
+                    height={150}
+                    className="w-[70px] sm:w-[85px] md:w-[90px] lg:w-[120px] xl:w-[120px] 2xl:w-[120px] h-auto"
+                    priority
+                  />
+                </div>
 
               ) : (
                 <div className="absolute left-[-10px] top-[12%]">
@@ -129,51 +129,46 @@ export default function AboutSection() {
 
           {/* Right Text Section */}
           <div className="md:col-span-6 px-4 sm:px-6 lg:px-8 xl:px-10">
-           
-              <>
-                <p className="mb-2 text-sm font-semibold text-[#FF70A3] sm:text-base lg:text-lg">
-                  About
-                </p>
 
-                <h2 className="text-2xl sm:text-3xl md:text-2xl lg:text-3xl xl:text-3xl font-extrabold leading-tight text-[#24305a] max-w-3xl">
-                  Turning Dreams of Families
-                  <br className="hidden sm:block" /> into Reality
-                </h2>
+            <>
+              <p className="mb-2 text-sm font-semibold text-[#FF70A3] sm:text-base lg:text-lg">
+                About
+              </p>
 
-                <p className="text-[#24305a] mt-5 max-w-3xl text-sm sm:text-base md:text-lg lg:text-xl xl:text-xl 2xl:text-[1.35rem] leading-relaxed text-black-800 text-justify sm:text-left">
-                  Dr. Chaithra S. K. is an infertility specialist at Ovum Fertility,
-                  Bangalore, with over 14 years of experience in reproductive medicine.
-                  Trained in reproductive medicine and endoscopy at Ruby Hall Clinic,
-                  and holding a diploma in advanced reproductive medicine from Kiel
-                  University, she blends clinical expertise with a compassionate and
-                  personalised approach to patient care.
-                </p>
+              <h2 className="text-2xl sm:text-3xl md:text-2xl lg:text-3xl xl:text-3xl font-extrabold leading-tight text-[#24305a] max-w-3xl">
+                Turning Dreams of Families
+                <br className="hidden sm:block" /> into Reality
+              </h2>
 
-                <div className="mt-8">
-                  <button
-                    type="button"
-                    onClick={() => setOpen(true)}
-                    className="inline-flex items-center gap-2 rounded-2xl bg-[#FF70A3] px-6 py-4 text-base font-semibold text-white shadow-sm transition hover:bg-rose-500"
+              <p className="text-[#24305a] mt-5 max-w-3xl text-sm sm:text-base md:text-lg lg:text-xl xl:text-xl 2xl:text-[1.35rem] leading-relaxed text-black-800 text-justify sm:text-left">
+                Dr. Chaithra S. K. is an infertility specialist at Ovum Fertility, Bangalore, with over 14 years of experience in reproductive medicine. Trained in reproductive medicine and endoscopy at Ruby Hall Clinic, and holding a diploma in advanced reproductive medicine from Kiel University, she blends clinical expertise with a compassionate and personalised approach to patient care.
+              </p>
+
+              <div className="mt-8">
+                <button
+                  type="button"
+                  onClick={() => setOpen(true)}
+                  className="inline-flex items-center gap-2 rounded-2xl bg-[#FF70A3] px-6 py-4 text-base font-semibold text-white shadow-sm transition hover:bg-rose-500"
+                >
+                  Book A Consultation
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
                   >
-                    Book A Consultation
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </>
-            
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </>
+
           </div>
         </div>
       </section>

@@ -67,6 +67,9 @@ export default function HeroPage() {
                     <br className="hidden sm:block" />
                     Medicine Expert in Bangalore
                   </p>
+                  <p className="mt-4 text-lg font-semibold text-gray-900">
+                    Medical Director - Ovum Fertility
+                  </p>
                   <p className="mt-4 text-sm text-gray-600">
                     MBBS, MS-OBG, FRM, DRM
                   </p>
@@ -130,9 +133,8 @@ export default function HeroPage() {
                       fill
                       priority
                       onLoad={() => setImageLoaded(true)}
-                      className={`z-10 object-contain object-center pointer-events-none select-none transition-opacity duration-500 ${
-                        imageLoaded ? "opacity-100" : "opacity-0"
-                      }`}
+                      className={`z-10 object-contain object-center pointer-events-none select-none transition-opacity duration-500 ${imageLoaded ? "opacity-100" : "opacity-0"
+                        }`}
                     />
                   </>
                 )}
@@ -143,13 +145,14 @@ export default function HeroPage() {
           {/* STATS SECTION */}
           <div className="relative z-30 md:-mt-20 lg:-mt-32 xl:-mt-80">
             <div className="w-full rounded-3xl bg-[rgba(236,102,150,0.16)] px-6 py-8 backdrop-blur-[6px] shadow-sm sm:px-8 sm:py-10">
-              
+
               {loaded ? (
-                <dl className="w-fit grid grid-cols-2 gap-y-12 gap-x-12 sm:grid-cols-4 xl:gap-x-0">
-                  <Stat label="IVF/ICSI Procedures" value="1000+" />
-                  <Stat label="IVF Success Rate" value="65%" />
-                  <Stat label="Couples Treated" value="6000" />
-                  <Stat label="Approval Rating on Practo" value="96%" />
+                <dl className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-6 gap-x-6 items-center justify-items-center">
+                  <Stat label={<>IVF/ICSI Procedures</>} value="2000+" />
+                  <Stat label={<>IVF Success Rate</>} value="65%" />
+                  <Stat label={<>Couples Treated</>} value="8000+" />
+                  <Stat label={<>Approval Rating on Practo</>} value="96%" />
+                  <Stat label="Live Birth" value="48%" />
                 </dl>
               ) : (
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
@@ -215,13 +218,23 @@ export default function HeroPage() {
 
 function Stat({ label, value }) {
   return (
-    <div className="text-center">
+    <div className="text-center min-w-[120px] max-w-[180px] px-2">
       <div className="text-3xl font-extrabold tracking-tight text-[#FF70A3] lg:text-4xl">
         {value}
       </div>
-      <div className="mt-1 text-xs font-medium text-[#202020] sm:text-sm">
+
+      <div
+        className="mt-2 inline-block px-3 py-1 rounded-full
+                   bg-white/80 backdrop-blur-md
+                   border border-white/30 shadow-sm 
+                   text-xs sm:text-sm font-medium text-[#202020]
+                   leading-snug whitespace-nowrap"
+      >
         {label}
       </div>
     </div>
   );
 }
+
+
+

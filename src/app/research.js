@@ -25,7 +25,7 @@ export default function PublicationsSection() {
     { image: "/advances.webp", title: "Advances in Reproductive Medicine", source: "— Journal of Fertility, 2022" },
     { image: "/role.webp", title: "Role of Regenerative Medicine in Infertility", source: "— Medical Times, 2023" },
     { image: "/ivf-patinet.webp", title: "Simplifying IVF for First-time Patients", source: "— Ovum Health Blog, 2021" },
-    { image: "/advances-2.webp", title: "Advances in Reproductive Medicine", source: "— Journal of Fertility, 2022" },
+    // { image: "/advances-2.webp", title: "Advances in Reproductive Medicine", source: "— Journal of Fertility, 2022" },
   ];
 
   return (

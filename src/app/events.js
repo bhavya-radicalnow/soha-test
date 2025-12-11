@@ -28,11 +28,11 @@ export default function EventsConferences() {
       img: "/event-2021.webp",
       caption: "Panellist on Women’s Health Summit, 2021",
     },
-    {
-      img: "/event(2)-2022.webp",
-      caption:
-        "Speaker at International Conference on Reproductive Health, 2022",
-    },
+    // {
+    //   img: "/event(2)-2022.webp",
+    //   caption:
+    //     "Speaker at International Conference on Reproductive Health, 2022",
+    // },
   ];
 
   return (

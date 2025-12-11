@@ -10,25 +10,25 @@ import Autoplay from "embla-carousel-autoplay";
 export default function PatientStories() {
   const stories = [
     {
-      name: "Devon Lane",
+      name: "Aarti",
       city: "Bangalore",
       avatar: "/devon.webp",
       text:
-        "Dr. Chaithra and her team were with us at every step. After years of struggle, we finally welcomed our baby girl thanks to her expertise and compassion.",
+        "I visited Dr. Chaitra for help with PCOD and conception, and thanks to her treatment, I conceived in my very next cycle! She’s incredibly patient, thorough, and supportive—always taking time to understand and reassure. I’m deeply grateful for her care and highly recommend her to anyone seeking compassionate and effective fertility guidance.",
     },
     {
-      name: "Carol Danvers",
+      name: "Babu Chinnarosaiah",
       city: "Bangalore",
       avatar: "/carol.webp",
       text:
-        "Dr. Chaithra and her team were with us at every step. After years of struggle, we finally welcomed our baby girl thanks to her expertise and compassion.",
+        "After our first IVF failure, we met Dr. Chaithra, who carefully assessed our case and guided us with the best possible treatment. Thanks to her expertise and care, my wife is now pregnant with twins! Our home is filled with happiness, and we’ll always be grateful to her for making our dream come true.",
     },
     {
-      name: "Karen Starr",
+      name: "Geetha Santosh",
       city: "Bangalore",
       avatar: "/karen.webp",
       text:
-        "Dr. Chaithra and her team were with us at every step. After years of struggle, we finally welcomed our baby girl thanks to her expertise and compassion.",
+        "I swear this is the superb doctor I have ever seen. She is so humble and caring; there are no words to describe her service. Dr. Chaithra is dedicated to her work. Now, we are conceived because of her guidance and good medication, which has helped us a lot.",
     },
   ];
 
