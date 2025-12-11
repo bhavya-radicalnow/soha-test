@@ -54,7 +54,7 @@ export default function HeroPage() {
     <main className="bg-white">
       <section className="relative overflow-hidden">
         <div className="relative mx-auto max-w-7xl px-7 lg:px-25">
-          <div className="grid grid-cols-1 md:grid-cols-12 items-center gap-10 md:gap-6 py-12 lg:py-20">
+          <div className="grid grid-cols-1 md:grid-cols-12 items-center gap-10 md:gap-6 pt-6 pb-10 md:pt-8 md:pb-12 lg:pt-10 lg:pb-14">
             {/* LEFT — TEXT */}
             <div className="order-2 md:order-1 md:col-span-6 relative z-20">
               {loaded ? (
