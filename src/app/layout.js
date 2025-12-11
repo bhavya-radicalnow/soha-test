@@ -20,8 +20,8 @@ const onest = Onest({
 });
 
 export const metadata = {
-  title: "Dr. Chaitra",
-  description: "Dr. Chaitra",
+  title: "Dr. Chaithra SK",
+  description: "Dr. Chaithra SK",
 };
 
 export default function RootLayout({ children }) {
