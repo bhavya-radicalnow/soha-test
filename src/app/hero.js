@@ -155,10 +155,10 @@ export default function HeroPage() {
 
               {loaded ? (
                 <dl className="w-full grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-6 gap-x-6 items-center justify-items-center">
-                  <Stat label={<>IVF/ICSI Procedures</>} value="2000+" />
-                  <Stat label={<>IVF Success Rate</>} value="65%" />
-                  <Stat label={<>Couples Treated</>} value="8000+" />
-                  <Stat label={<>Approval Rating on Practo</>} value="96%" />
+                  <Stat label="IVF/ICSI Procedures" value="2000+" />
+                  <Stat label="IVF Success Rate" value="65%" />
+                  <Stat label="Couples Treated" value="8000+" />
+                  <Stat label="Approval Rating on Practo" value="96%" />
                   <Stat label="Live Birth" value="48%" />
                 </dl>
               ) : (
@@ -225,17 +225,18 @@ export default function HeroPage() {
 
 function Stat({ label, value }) {
   return (
-    <div className="text-center min-w-[120px] max-w-[180px] px-2">
-      <div className="text-3xl font-extrabold tracking-tight text-[#FF70A3] lg:text-4xl">
+    <div className="text-center min-w-0 max-w-[180px] px-2">
+      <div className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#FF70A3]">
         {value}
       </div>
 
       <div
-        className="mt-2 inline-block px-3 py-1 rounded-full
+        className="mt-2 inline-block px-2 sm:px-3 py-1 rounded-full
                    bg-white/80 backdrop-blur-md
                    border border-white/30 shadow-sm 
                    text-xs sm:text-sm font-medium text-[#202020]
-                   leading-snug whitespace-nowrap"
+                   leading-snug whitespace-normal break-words"
+        style={{ maxWidth: "100%" }}
       >
         {label}
       </div>
