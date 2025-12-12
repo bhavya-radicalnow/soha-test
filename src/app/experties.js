@@ -14,53 +14,64 @@ export default function FieldOfExpertise() {
     {
       src: "/embruo.webp",
       hoverSrc: "/embruo-white.webp",
-      title: " Placing the developed embryo back into the uterus",
+      title: " Embryo Transfer",
+      description: "Placing the developed embryo back into the uterus."
+
     },
 {
       src: "/laproscopic.webp",
       hoverSrc: "/WHITE-2.webp",
-      title: "Minimally invasive hystero-laparoscopic surgeries",
+      title: "Fertility, Hystero–Laparoscopy",
+      description: "Minimally invasive fertility-boosting surgery."
     },
 
  {
       src: "/implantation.webp",
       hoverSrc: "/implantation-white.webp",
-      title: "Recurrent implantation failure; immunological infertility",
+      title: "Reproductive Immunology",
+    description: "Treating immune issues that affect pregnancy."
     },
 
  {
       src: "/reprodu.webp",
       hoverSrc: "/reprodu-white.webp",
-      title: "Recurrent implantation failure; immunological infertility",
+          title: "Reproductive Genetics",
+    description: "Checking genetic issues affecting fertility or pregnancy."
     },
 
     {
       src: "/highrick.webp",
       hoverSrc: "/WHITE.webp",
-      title: "High-risk obstetrics; PESA/TESA andrology procedures",
+       title: "Male Infertility",
+    description: "Treating sperm and male reproductive disorders."
     },
     
     {
       src: "/poor-ovarian.webp",
       hoverSrc: "/poor-ovarian-white.webp",
-      title: "Poor ovarian reserve management",
+          title: "Ovarian & Endometrial Health",
+    description: "Improving egg quality and uterine lining."
     },
    
     {
       src: "/donor.webp",
       hoverSrc: "/donor-white.webp",
-      title: "Donor & surrogacy programs; PGT/PGD, ERA",
+          title: "Donor & Surrogacy Programs",
+    description: "Providing options for couples who need them."
     },
    
     {
       src: "/ultrasonography.webp",
       hoverSrc: "/ultrasonography-white.webp",
-      title: "3D ultrasonography, Dopplers; recurrent pregnancy loss",
+          title: "Advanced Ultrasonography",
+    description: "Using high-level ultrasound technologies."
+      
     },
     {
       src: "/fertitity.webp",
       hoverSrc: "/fertility-white.webp",
-      title: "Compassionate care & patient support",
+     title: "Fertility Preservation",
+    description: "Freezing eggs, sperm, or embryos for future use."
     },
    
   ];
@@ -79,7 +90,13 @@ export default function FieldOfExpertise() {
             Field of Expertise
           </h3>
 
-          <div className="mt-8 grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 sm:gap-6 md:gap-8 xl:gap-x-5 gap-y-6">
+          <div className="
+  mt-10 
+  grid 
+  grid-cols-2 gap-7 sm:grid-cols-3 lg:grid-cols-5 
+  gap-x-8 gap-y-10
+">
+
             {expertise.map((item, i) => (
               <ExpertiseCard key={i} item={item} />
             ))}
@@ -90,22 +107,37 @@ export default function FieldOfExpertise() {
   );
 }
 
+
 function ExpertiseCard({ item }) {
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <div className="group flex flex-col items-center justify-start rounded-3xl bg-white shadow-md transition-all duration-500 hover:bg-[#ff69b4] hover:shadow-2xl hover:scale-[1.03] px-4 py-6 sm:p-6 md:p-7 lg:p-8">
-      <div className="relative w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-15 mb-1">
-
+    <div
+      className="
+        group flex flex-col items-center text-center
+        rounded-3xl bg-white shadow-md
+        transition-all duration-300 hover:bg-[#ff69b4] hover:shadow-xl
+        px-5 py-6
+        w-full
+        max-w-[170px]    /* best for iPhone SE */
+        sm:max-w-[190px]
+        md:max-w-[200px]
+        lg:max-w-[215px]
+        mx-auto
+      "
+    >
+      {/* Icon */}
+      <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-4">
         {!loaded && (
-          <div className="absolute inset-0 animate-pulse rounded-2xl bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200" />
+          <div className="absolute inset-0 animate-pulse rounded-xl bg-gray-200" />
         )}
 
         <Image
           src={item.src}
           alt={item.title}
           fill
-          className={`object-contain transition-opacity duration-500 group-hover:opacity-0 ${loaded ? "opacity-100" : "opacity-0"}`}
+          className={`object-contain transition-opacity duration-300 
+            group-hover:opacity-0 ${loaded ? "opacity-100" : "opacity-0"}`}
           onLoadingComplete={() => setLoaded(true)}
         />
 
@@ -113,13 +145,41 @@ function ExpertiseCard({ item }) {
           src={item.hoverSrc}
           alt={`${item.title} hover`}
           fill
-          className="object-contain opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          className="object-contain opacity-0 transition-opacity duration-300 
+            group-hover:opacity-100"
         />
       </div>
 
-      <p className="text-center text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-[#24305a] transition-colors duration-500 group-hover:text-white">
+      {/* Title */}
+      <p
+        className="
+          font-semibold text-[#24305a] group-hover:text-white
+          text-xs
+          sm:text-sm
+          md:text-base
+          leading-tight
+          min-h-[32px]
+        "
+      >
         {item.title}
       </p>
+
+      {/* Description */}
+      {item.description && (
+        <p
+          className="
+            mt-1 text-[#24305a]/70 group-hover:text-white/90
+            text-[11px] sm:text-sm md:text-[15px]
+            leading-snug
+            min-h-[34px]
+          "
+        >
+          {item.description}
+        </p>
+      )}
     </div>
   );
 }
+
+
+
