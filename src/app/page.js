@@ -16,7 +16,7 @@ export default function Home() {
       <AboutSection />
       <FieldOfExpertise />
       <ApproachSection />
-      {/* <ExpertAdviceVideos /> */}
+      <ExpertAdviceVideos />
       <PublicationsSection />
       <PatientStories />
       <EventsConferences />

@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -25,7 +26,7 @@ export default function PublicationsSection() {
     { image: "/advances.webp", title: "Advances in Reproductive Medicine", source: "— Journal of Fertility, 2022" },
     { image: "/role.webp", title: "Role of Regenerative Medicine in Infertility", source: "— Medical Times, 2023" },
     { image: "/ivf-patinet.webp", title: "Simplifying IVF for First-time Patients", source: "— Ovum Health Blog, 2021" },
-    // { image: "/advances-2.webp", title: "Advances in Reproductive Medicine", source: "— Journal of Fertility, 2022" },
+    { image: "/advances-2.webp", title: "Advances in Reproductive Medicine", source: "— Journal of Fertility, 2022" },
   ];
 
   return (
@@ -38,14 +39,26 @@ export default function PublicationsSection() {
           <span className="text-[#FF70A3]">Dr. Chaithra S K</span>
         </h2>
 
-        <p className="mt-4 max-w-3xl text-base leading-7 text-gray-700 sm:text-lg">
-          Dr Chaithra delivers evidence-based, personalised treatment plans balancing realistic expectations with the latest medical techniques. She emphasises patient education and continuity of care.
-        </p>
+        <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
+          <p className="mt-4 max-w-3xl text-base leading-7 text-gray-700 sm:text-lg">
+            Dr Chaithra delivers evidence-based, personalised treatment plans—balancing realistic expectations with the latest medical techniques. She emphasises patient education and continuity of care.
+          </p>
+          
+          <div className="shrink-0">
+            <Link
+              href="/layer/gallery"
+              className="inline-flex items-center justify-center rounded-2xl bg-[#8c8c8c] px-8 py-3 text-base font-medium text-white shadow-sm transition hover:bg-gray-600"
+            >
+              View All
+            </Link>
+          </div>
+        </div>
+
 
         <div className="mt-8">
           <div
             ref={scroller}
-            className="flex gap-6 overflow-x-auto pb-2 [scrollbar-width:none] [-ms-overflow-style:none] lg:grid lg:grid-cols-4 lg:overflow-visible lg:gap-8"
+            className="flex gap-6 overflow-x-auto pb-2 [scrollbar-width:none] [-ms-overflow-style:none] lg:gap-8"
             style={{ WebkitOverflowScrolling: "touch" }}
           >
             <style jsx>{`
@@ -66,7 +79,7 @@ export default function PublicationsSection() {
           </div>
 
           {/* mobile scroll buttons */}
-          <div className="mt-6 flex items-center justify-center gap-4 lg:hidden">
+          <div className="mt-6 flex items-center justify-center gap-4 ">
             <button
               onClick={() => scrollByAmount("left")}
               className="h-10 w-10 rounded-full bg-[rgba(255,112,163,0.8)] text-white shadow hover:brightness-105 active:scale-95 transition grid place-items-center"
@@ -88,7 +101,7 @@ export default function PublicationsSection() {
 
 function ArticleCard({ image, title, source, loaded }) {
   return (
-    <div className="group block min-w-[78%] xs:min-w-[70%] sm:min-w-[55%] md:min-w-[48%] lg:min-w-0">
+    <div className="group block min-w-[78%] xs:min-w-[70%] sm:min-w-[55%] md:min-w-[48%] lg:min-w-[28%]">
       <div className="relative overflow-hidden rounded-[20px]">
         <div className="relative aspect-[16/11] w-full">
           {!loaded ? (
