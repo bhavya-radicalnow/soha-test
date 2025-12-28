@@ -141,7 +141,7 @@ export default function AboutSection() {
               </h2>
 
               <p className="text-[#24305a] mt-5 max-w-3xl text-sm sm:text-base md:text-lg lg:text-xl xl:text-xl 2xl:text-[1.35rem] leading-relaxed text-black-800 text-justify sm:text-left">
-                Dr. Chaithra S. K. is an infertility specialist at Ovum Fertility, Bangalore, with over 14 years of experience in reproductive medicine. Trained in reproductive medicine and endoscopy at Ruby Hall Clinic, and holding a diploma in advanced reproductive medicine from Kiel University, she blends clinical expertise with a compassionate and personalised approach to patient care.
+                Dr. Chaithra S. K. is an infertility specialist with over 14 years of experience in reproductive medicine. She completed her advanced training in reproductive medicine and endoscopy at Ruby Hall Clinic and holds a Diploma in Advanced Reproductive Medicine from Kiel University, Germany. Prior to joining Ovum Fertility, she spent 8 years at GarbhaGudi IVF Centre, where she served as Assistant Medical Director. Dr. Chaithra is known for her evidence-based, ethical, and personalised approach to fertility care.
               </p>
 
               <div className="mt-8">

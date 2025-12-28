@@ -26,7 +26,6 @@ export default function PublicationsSection() {
     { image: "/advances.webp", title: "Advances in Reproductive Medicine", source: "— Journal of Fertility, 2022" },
     { image: "/role.webp", title: "Role of Regenerative Medicine in Infertility", source: "— Medical Times, 2023" },
     { image: "/ivf-patinet.webp", title: "Simplifying IVF for First-time Patients", source: "— Ovum Health Blog, 2021" },
-    { image: "/advances-2.webp", title: "Advances in Reproductive Medicine", source: "— Journal of Fertility, 2022" },
   ];
 
   return (
@@ -44,14 +43,14 @@ export default function PublicationsSection() {
             Dr Chaithra delivers evidence-based, personalised treatment plans—balancing realistic expectations with the latest medical techniques. She emphasises patient education and continuity of care.
           </p>
           
-          <div className="shrink-0">
+          {/* <div className="shrink-0">
             <Link
               href="/layer/gallery"
               className="inline-flex items-center justify-center rounded-2xl bg-[#8c8c8c] px-8 py-3 text-base font-medium text-white shadow-sm transition hover:bg-gray-600"
             >
               View All
             </Link>
-          </div>
+          </div> */}
         </div>
 
 
