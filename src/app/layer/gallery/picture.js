@@ -4,9 +4,8 @@ import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import ReactPlayer from "react-player";
 
-export default function Picture() {
+function GallerySlider({ title, images, setActiveVideo }) {
   const scrollRef = useRef(null);
-  const [activeVideo, setActiveVideo] = useState(null);
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -18,66 +17,13 @@ export default function Picture() {
     }
   };
 
-  const images = [
-    {
-      id: 1,
-      src: "/img 01.webp",
-      title: "Role of Hysteroscopy in IVF",
-      desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
-      type: "video",
-      videoUrl: "https://youtu.be/ZIXSo1bnSM4?si=vZOQmRtZhnScsVfB" 
-    },
-    {
-      id: 2,
-      src: "/img 02.webp",
-      title: "What are the steps of IVF",
-      desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
-      type: "video",
-      videoUrl: "https://youtu.be/ZIXSo1bnSM4?si=vZOQmRtZhnScsVfB"
-    },
-    {
-      id: 3,
-      src: "/img 03.webp",
-      title: "Fertility Specialist",
-      desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
-      type: "image"
-    },
-    {
-      id: 4,
-      src: "/img 04.webp",
-      title: "Advanced Fertility Care",
-      desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
-      type: "image"
-    },
-  ];
-
   return (
-    <section className="w-full max-w-7xl mx-auto px-6 py-16">
+    <div className="mb-16 last:mb-0">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-6">
         <div className="max-w-2xl">
           <h2 className="text-[#1e1b4b] text-3xl md:text-4xl font-bold mb-4">
-            Our Journey in Pictures
+            {title}
           </h2>
-          <p className="text-gray-600 text-lg leading-relaxed">
-            Dr Chaithra delivers evidence-based, personalised treatment plans-balancing 
-            realistic expectations with the latest medical techniques. She emphasises patient 
-            education and continuity of care.
-          </p>
-        </div>
-
-        <div className="inline-flex items-center bg-white border border-gray-200 rounded-xl p-1.5 shadow-sm">
-            {['All', 'Events', 'Articles'].map((tab, idx) => (
-                <button 
-                    key={idx}
-                    className={`px-8 py-2.5 rounded-lg font-bold text-sm transition-all duration-200 ${
-                        idx === 1 
-                        ? 'bg-[#fd5d93] text-white shadow-md' 
-                        : 'text-gray-900 hover:bg-gray-50'
-                    }`}
-                >
-                    {tab}
-                </button>
-            ))}
         </div>
       </div>
 
@@ -114,7 +60,7 @@ export default function Picture() {
               >
                 <Image
                   src={img.src}
-                  alt={img.title}
+                  alt={img.title || "Gallery Image"}
                   fill
                   className="object-cover"
                 />
@@ -136,6 +82,106 @@ export default function Picture() {
           ))}
         </div>
       </div>
+    </div>
+  );
+}
+
+export default function Picture() {
+  const [activeVideo, setActiveVideo] = useState(null);
+
+  const section1Images = [
+    {
+      id: 4,
+      src: "/Bhattarahalli.webp",
+      title: "Role of Hysteroscopy in IVF",
+      type: "image",
+    },
+    {
+      id: 1,
+      src: "/Bhattarahalli 0.webp",
+      title: "Role of Hysteroscopy in IVF",
+      type: "image",
+    },
+    {
+      id: 2,
+      src: "/Bhattarahalli 1.webp",
+      title: "Role of Hysteroscopy in IVF",
+      type: "image",
+    },
+    {
+      id: 3,
+      src: "/Bhattarahalli 2.webp",
+      title: "Role of Hysteroscopy in IVF",
+      type: "image",
+    },
+    {
+      id: 5,
+      src: "/img 02.webp",
+      title: "What are the steps of IVF",
+      type: "video",
+      videoUrl: "https://youtu.be/ZIXSo1bnSM4?si=vZOQmRtZhnScsVfB"
+    },
+  ];
+
+  const section2Images = [
+    {
+      id: 1,
+      src: "/award.webp",
+      title: "Fertility Awareness Session",
+      type: "image",
+    },
+    {
+      id: 1,
+      src: "/oligocare (1).webp",
+      title: "Fertility Awareness Session",
+      type: "image",
+    },
+    {
+      id: 1,
+      src: "/oligocare (3).webp",
+      title: "Fertility Awareness Session",
+      type: "image",
+    },
+   {
+      id: 1,
+      src: "/oligocare (2).webp",
+      title: "Fertility Awareness Session",
+      type: "image",
+    },
+
+  ];
+
+  return (
+    <section className="w-full max-w-7xl mx-auto px-6 py-16">
+      {/* Tabs / Filter (kept at the top level) */}
+      <div className="flex justify-end mb-12">
+        <div className="inline-flex items-center bg-white border border-gray-200 rounded-xl p-1.5 shadow-sm">
+          {['All', 'Events', 'Articles'].map((tab, idx) => (
+            <button 
+              key={idx}
+              className={`px-8 py-2.5 rounded-lg font-bold text-sm transition-all duration-200 ${
+                idx === 1 
+                ? 'bg-[#fd5d93] text-white shadow-md' 
+                : 'text-gray-900 hover:bg-gray-50'
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <GallerySlider 
+        title="World IVF day celebration at Ovum Fertility Bhattarahalli 2025" 
+        images={section1Images} 
+        setActiveVideo={setActiveVideo} 
+      />
+
+      <GallerySlider 
+        title="Received IFS Appreciation award 2025 at Annual IFS conference Gurgaon" 
+        images={section2Images} 
+        setActiveVideo={setActiveVideo} 
+      />
 
       {/* Video Modal */}
       {activeVideo && (
@@ -155,10 +201,13 @@ export default function Picture() {
               playing
             />
             <button
-                onClick={() => setActiveVideo(null)}
-                className="absolute top-4 right-4 text-white hover:text-gray-300 z-10 bg-black/50 rounded-full p-2"
+              onClick={() => setActiveVideo(null)}
+              className="absolute top-4 right-4 text-white hover:text-gray-300 z-10 bg-black/50 rounded-full p-2"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
             </button>
           </div>
         </div>
@@ -166,3 +215,4 @@ export default function Picture() {
     </section>
   );
 }
+

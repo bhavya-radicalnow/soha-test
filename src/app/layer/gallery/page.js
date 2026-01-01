@@ -5,6 +5,9 @@ import Image from "next/image";
 import Picture from "./picture";
 import Videos from "./videos";
 import Journey from "./journey";
+import Pic1 from "./pic1";
+import Pic2 from "./pic2";
+import Pic3 from "./pic3";
 
 
 export default function SuccessStories() {
@@ -89,6 +92,9 @@ export default function SuccessStories() {
       </section>
 
       <Picture />
+      <Pic1 />
+      <Pic2 />
+      <Pic3 />
       <Journey/>
       <Videos />
    

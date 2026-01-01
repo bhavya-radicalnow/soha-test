@@ -1,14 +1,11 @@
-"use client";   
+"use client";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import ReactPlayer from "react-player";
 
-
-
-export default function Journey() {
+function GallerySlider({ title, images, setActiveVideo }) {
   const scrollRef = useRef(null);
-  const [activeVideo, setActiveVideo] = useState(null);
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -20,104 +17,12 @@ export default function Journey() {
     }
   };
 
-  const images = [
-    {
-      id: 1,
-      src: "/Patna 1.webp",
-      title: "Wondering about egg freezing?",
-      // desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
-      type: "image",
-    },
-    {
-      id: 2,
-      src: "/Patna 3.webp",
-      title: "What are the steps of IVF",
-      // desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
-      // type: "video",
-      videoUrl: "https://youtu.be/ZIXSo1bnSM4?si=vZOQmRtZhnScsVfB" 
-    },
-    {
-      id: 3,
-      src: "/Patna 9.webp",
-      title: "Fertility Specialist",
-      // desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
-      type: "image"
-    },
-    {
-      id: 4,
-      src: "/Patna 4.webp",
-      title: "Advanced Fertility Care",
-      // desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
-      type: "image"
-    },
-    {
-      id: 5,
-      src: "/Patna 5.webp",
-      title: "Fertility Specialist",
-      // desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
-      type: "image"
-    },
-    {
-      id: 6,
-      src: "/Patna 6.webp",
-      title: "Advanced Fertility Care",
-      // desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
-      type: "image"
-    },
-    {
-      id: 7,
-      src: "/Patna 7.webp",
-      title: "Advanced Fertility Care",
-      // desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
-      type: "image"
-    },
-    {
-      id: 8,
-      src: "/Patna 8.webp",
-      title: "Fertility Specialist",
-      // desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
-      type: "image"
-    },
-    {
-      id: 9,
-      src: "/Patna 9.webp",
-      title: "Advanced Fertility Care",
-      // desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
-      type: "image"
-    },
-    {
-      id: 10,
-      src: "/Patna 10.webp",
-      title: "Fertility Specialist",
-      // desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
-      type: "image"
-    },
-    {
-      id: 11,
-      src: "/Patna 11.webp",
-      title: "Advanced Fertility Care",
-      // desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
-      type: "image"
-    },
-    {
-      id: 12,
-      src: "/Patna 12.webp",
-      title: "Advanced Fertility Care",
-      // desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
-      type: "image"
-    },
-    
-  
-  ];
-
-
- return (
-    <section className="w-full max-w-7xl mx-auto px-6 py-16">
+  return (
+    <div className="mb-16 last:mb-0">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-6">
         <div className="max-w-2xl">
           <h2 className="text-[#1e1b4b] text-3xl md:text-4xl font-bold mb-4">
-         ISAR Youth Icon award ceremony 
-Patna 2024
+            {title}
           </h2>
         </div>
       </div>
@@ -155,7 +60,7 @@ Patna 2024
               >
                 <Image
                   src={img.src}
-                  alt={img.title}
+                  alt={img.title || "Gallery Image"}
                   fill
                   className="object-cover"
                 />
@@ -177,7 +82,53 @@ Patna 2024
           ))}
         </div>
       </div>
+    </div>
+  );
+}
 
+export default function Pic3() {
+  const [activeVideo, setActiveVideo] = useState(null);
+
+  const images = [
+    {
+      id: 1,
+      src: "/Patna 9.webp",
+      title: "Conference 2021",
+      type: "image",
+    },
+    {
+      id: 2,
+      src: "/Patna 4.webp",
+      title: "Conference 2022",
+      type: "image",
+    },
+    {
+      id: 3,
+      src: "/patna 8.webp",
+      title: "Conference 2023",
+      type: "image",
+    },
+    {
+      id: 4,
+      src: "/Patna 3.webp",
+      title: "",
+      type: "image",
+    },
+    {
+      id: 5,
+      src: "/Patna 12.webp",
+      title: "",
+      type: "image",
+    },
+  ];
+
+  return (
+    <section className="w-full max-w-7xl mx-auto px-6 py-16">
+      <GallerySlider 
+        title="Delivered talk on endometriosis in infertility at National YUVA ISAR conference Chennai 2025" 
+        images={images} 
+        setActiveVideo={setActiveVideo} 
+      />
 
       {/* Video Modal */}
       {activeVideo && (
@@ -197,17 +148,17 @@ Patna 2024
               playing
             />
             <button
-                onClick={() => setActiveVideo(null)}
-                className="absolute top-4 right-4 text-white hover:text-gray-300 z-10 bg-black/50 rounded-full p-2"
+              onClick={() => setActiveVideo(null)}
+              className="absolute top-4 right-4 text-white hover:text-gray-300 z-10 bg-black/50 rounded-full p-2"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
             </button>
           </div>
         </div>
       )}
     </section>
   );
-}   
-
-
-
+}

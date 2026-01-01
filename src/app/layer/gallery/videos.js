@@ -19,44 +19,45 @@ export default function Videos() {
   };
 
   const images = [
+    
     {
       id: 1,
-      src: "/img 01.webp",
-      title: "Wondering about egg freezing?",
-      desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
-      type: "video",
-      videoUrl: "https://youtu.be/ZIXSo1bnSM4?si=vZOQmRtZhnScsVfB"
+      src: "/banglore 1.webp",
+      title: "Fertility Specialist",
+      type: "image"
     },
     {
       id: 2,
-      src: "/img 02.webp",
-      title: "What are the steps of IVF",
-      desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
-      type: "video",
-      videoUrl: "https://youtu.be/ZIXSo1bnSM4?si=vZOQmRtZhnScsVfB" 
+      src: "/bangalore 2.webp",
+      title: "Advanced Fertility Care",
+      type: "image"
     },
-    {
+     {
       id: 3,
-      src: "/img 03.webp",
-      title: "Fertility Specialist",
-      desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
+      src: "/bangalore 3.webp",
+      title: "Advanced Fertility Care",
       type: "image"
     },
     {
       id: 4,
-      src: "/img 04.webp",
+      src: "/bangalore 4.webp",
       title: "Advanced Fertility Care",
-      desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
       type: "image"
     },
+    
+    
     {
       id: 5,
-      src: "/img 01.webp",
-      title: "Wondering about egg freezing?",
-      desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
-      type: "video",
-      videoUrl: "https://youtu.be/ZIXSo1bnSM4?si=vZOQmRtZhnScsVfB"
+      src: "/bangalore  5.webp",
+      title: "Advanced Fertility Care",
+      type: "image"
+    }, {
+      id: 6,
+      src: "/bangalore 6.webp",
+      title: "Advanced Fertility Care",
+      type: "image"
     },
+
   ];
 
   return (
@@ -64,13 +65,9 @@ export default function Videos() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-6">
         <div className="max-w-2xl">
           <h2 className="text-[#1e1b4b] text-3xl md:text-4xl font-bold mb-4">
-            Our Journey in Pictures
+            South ISAR academic activities Bangalore 2024
           </h2>
-          <p className="text-gray-600 text-lg leading-relaxed">
-            Dr Chaithra delivers evidence-based, personalised treatment plans-balancing 
-            realistic expectations with the latest medical techniques. She emphasises patient 
-            education and continuity of care.
-          </p>
+          
         </div>
       </div>
 
@@ -163,5 +160,8 @@ export default function Videos() {
       
 
     </section>
+
+
+
   );
 }
