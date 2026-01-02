@@ -35,7 +35,7 @@ function GallerySlider({ title, images, setActiveVideo }) {
         >
           <ChevronLeft size={24} />
         </button>
-        
+
         <button
           onClick={() => scroll("right")}
           className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 bg-[#fb7185] rounded-full shadow-lg flex items-center justify-center text-white hover:scale-110 transition-all opacity-0 group-hover:opacity-100"
@@ -52,9 +52,9 @@ function GallerySlider({ title, images, setActiveVideo }) {
           {images.map((img) => (
             <div
               key={img.id}
-              className="min-w-[300px] md:min-w-[400px] flex-shrink-0 bg-white rounded-2xl overflow-hidden"
+              className="min-w-[280px] sm:min-w-[320px] md:min-w-[350px] lg:min-w-[400px] flex-shrink-0 bg-white rounded-2xl overflow-hidden"
             >
-              <div 
+              <div
                 className="relative aspect-video w-full rounded-2xl overflow-hidden cursor-pointer"
                 onClick={() => img.type === 'video' && setActiveVideo(img.videoUrl)}
               >
@@ -65,14 +65,14 @@ function GallerySlider({ title, images, setActiveVideo }) {
                   className="object-cover"
                 />
                 {img.type === 'video' && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
-                        <div className="w-12 h-12 rounded-full bg-black/50 flex items-center justify-center backdrop-blur-sm hover:scale-110 transition-transform">
-                            <Play className="fill-white text-white translate-x-0.5" size={20} />
-                        </div>
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
+                    <div className="w-12 h-12 rounded-full bg-black/50 flex items-center justify-center backdrop-blur-sm hover:scale-110 transition-transform">
+                      <Play className="fill-white text-white translate-x-0.5" size={20} />
                     </div>
+                  </div>
                 )}
               </div>
-              
+
               <div className="pt-4">
                 <p className="text-gray-600 text-sm leading-relaxed">
                   {img.desc}
@@ -142,7 +142,7 @@ export default function Picture() {
       title: "Fertility Awareness Session",
       type: "image",
     },
-   {
+    {
       id: 1,
       src: "/oligocare (2).webp",
       title: "Fertility Awareness Session",
@@ -153,43 +153,27 @@ export default function Picture() {
 
   return (
     <section className="w-full max-w-7xl mx-auto px-6 py-16">
-      {/* Tabs / Filter (kept at the top level) */}
-      <div className="flex justify-end mb-12">
-        <div className="inline-flex items-center bg-white border border-gray-200 rounded-xl p-1.5 shadow-sm">
-          {['All', 'Events', 'Articles'].map((tab, idx) => (
-            <button 
-              key={idx}
-              className={`px-8 py-2.5 rounded-lg font-bold text-sm transition-all duration-200 ${
-                idx === 1 
-                ? 'bg-[#fd5d93] text-white shadow-md' 
-                : 'text-gray-900 hover:bg-gray-50'
-              }`}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
-      </div>
 
-      <GallerySlider 
-        title="World IVF day celebration at Ovum Fertility Bhattarahalli 2025" 
-        images={section1Images} 
-        setActiveVideo={setActiveVideo} 
+
+      <GallerySlider
+        title="World IVF day celebration at Ovum Fertility Bhattarahalli 2025"
+        images={section1Images}
+        setActiveVideo={setActiveVideo}
       />
 
-      <GallerySlider 
-        title="Received IFS Appreciation award 2025 at Annual IFS conference Gurgaon" 
-        images={section2Images} 
-        setActiveVideo={setActiveVideo} 
+      <GallerySlider
+        title="Received IFS Appreciation award 2025 at Annual IFS conference Gurgaon"
+        images={section2Images}
+        setActiveVideo={setActiveVideo}
       />
 
       {/* Video Modal */}
       {activeVideo && (
-        <div 
+        <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 transition-opacity backdrop-blur-sm"
           onClick={() => setActiveVideo(null)}
         >
-          <div 
+          <div
             className="relative w-full max-w-4xl aspect-video bg-black rounded-lg overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >

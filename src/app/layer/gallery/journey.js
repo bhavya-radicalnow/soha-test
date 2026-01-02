@@ -1,4 +1,4 @@
-"use client";   
+"use client";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
@@ -34,7 +34,7 @@ export default function Journey() {
       title: "What are the steps of IVF",
       // desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
       // type: "video",
-      videoUrl: "https://youtu.be/ZIXSo1bnSM4?si=vZOQmRtZhnScsVfB" 
+      videoUrl: "https://youtu.be/ZIXSo1bnSM4?si=vZOQmRtZhnScsVfB"
     },
     {
       id: 3,
@@ -106,18 +106,18 @@ export default function Journey() {
       // desc: "Dr Chaithra delivers evidence-based, personalised treatment plans-balancing realistic.",
       type: "image"
     },
-    
-  
+
+
   ];
 
 
- return (
+  return (
     <section className="w-full max-w-7xl mx-auto px-6 py-16">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-6">
         <div className="max-w-2xl">
           <h2 className="text-[#1e1b4b] text-3xl md:text-4xl font-bold mb-4">
-         ISAR Youth Icon award ceremony 
-Patna 2024
+            ISAR Youth Icon award ceremony
+            Patna 2024
           </h2>
         </div>
       </div>
@@ -130,7 +130,7 @@ Patna 2024
         >
           <ChevronLeft size={24} />
         </button>
-        
+
         <button
           onClick={() => scroll("right")}
           className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 bg-[#fb7185] rounded-full shadow-lg flex items-center justify-center text-white hover:scale-110 transition-all opacity-0 group-hover:opacity-100"
@@ -147,9 +147,9 @@ Patna 2024
           {images.map((img) => (
             <div
               key={img.id}
-              className="min-w-[300px] md:min-w-[400px] flex-shrink-0 bg-white rounded-2xl overflow-hidden"
+              className="min-w-[280px] sm:min-w-[320px] md:min-w-[350px] lg:min-w-[400px] flex-shrink-0 bg-white rounded-2xl overflow-hidden"
             >
-              <div 
+              <div
                 className="relative aspect-video w-full rounded-2xl overflow-hidden cursor-pointer"
                 onClick={() => img.type === 'video' && setActiveVideo(img.videoUrl)}
               >
@@ -160,14 +160,14 @@ Patna 2024
                   className="object-cover"
                 />
                 {img.type === 'video' && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
-                        <div className="w-12 h-12 rounded-full bg-black/50 flex items-center justify-center backdrop-blur-sm hover:scale-110 transition-transform">
-                            <Play className="fill-white text-white translate-x-0.5" size={20} />
-                        </div>
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
+                    <div className="w-12 h-12 rounded-full bg-black/50 flex items-center justify-center backdrop-blur-sm hover:scale-110 transition-transform">
+                      <Play className="fill-white text-white translate-x-0.5" size={20} />
                     </div>
+                  </div>
                 )}
               </div>
-              
+
               <div className="pt-4">
                 <p className="text-gray-600 text-sm leading-relaxed">
                   {img.desc}
@@ -181,11 +181,11 @@ Patna 2024
 
       {/* Video Modal */}
       {activeVideo && (
-        <div 
+        <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 transition-opacity backdrop-blur-sm"
           onClick={() => setActiveVideo(null)}
         >
-          <div 
+          <div
             className="relative w-full max-w-4xl aspect-video bg-black rounded-lg overflow-hidden shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
@@ -197,17 +197,17 @@ Patna 2024
               playing
             />
             <button
-                onClick={() => setActiveVideo(null)}
-                className="absolute top-4 right-4 text-white hover:text-gray-300 z-10 bg-black/50 rounded-full p-2"
+              onClick={() => setActiveVideo(null)}
+              className="absolute top-4 right-4 text-white hover:text-gray-300 z-10 bg-black/50 rounded-full p-2"
             >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
           </div>
         </div>
       )}
     </section>
   );
-}   
+}
 
 
 
