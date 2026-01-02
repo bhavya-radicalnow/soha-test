@@ -8,9 +8,45 @@ import Journey from "./journey";
 import Pic1 from "./pic1";
 import Pic2 from "./pic2";
 import Pic3 from "./pic3";
-
+import ContactModal from "@/components/ContactModal";
+import { useState } from "react";
 
 export default function SuccessStories() {
+  const [open, setOpen] = useState(false);
+
+  async function handleSubmit(values) {
+    try {
+      const phone = (values.phone || "").toString().replace(/\s+/g, "");
+      if (!/^\d{10}$/.test(phone)) {
+        throw new Error("Please enter a valid 10-digit phone number.");
+      }
+      // Capture UTM params from current URL (if any)
+      const searchParams = new URLSearchParams(
+        typeof window !== "undefined" ? window.location.search : ""
+      );
+      const utm_campaign = searchParams.get("utm_campaign") || "";
+      const utm_source = searchParams.get("utm_source") || "";
+      const utm_medium = searchParams.get("utm_medium") || "";
+      const utm_term = searchParams.get("utm_term") || "";
+
+      const payload = {
+        ...values,
+        utm_campaign,
+        utm_source,
+        utm_medium,
+        utm_term,
+      };
+
+      fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+    } catch (err) {
+      console.error("Network error submitting lead:", err);
+      throw err;
+    }
+  }
   return (
     <main className="bg-white relative overflow-hidden flex flex-col">
       {/* Back Button */}
@@ -69,7 +105,7 @@ export default function SuccessStories() {
             </h1>
 
             {/* CTA */}
-            <button className="mt-6 mb-6 sm:mt-10 inline-flex w-full sm:w-auto justify-center items-center gap-3 rounded-2xl bg-[#FF70A3] px-6 py-3 text-sm sm:text-lg font-bold text-white shadow-lg transition hover:bg-rose-500 hover:scale-105 active:scale-95">
+            <button className="mt-6 mb-6 sm:mt-10 inline-flex w-full sm:w-auto justify-center items-center gap-3 rounded-2xl bg-[#FF70A3] px-6 py-3 text-sm sm:text-lg font-bold text-white shadow-lg transition hover:bg-rose-500 hover:scale-105 active:scale-95" onClick={() => setOpen(true)}>
               Book A Consultation
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="sm:w-6 sm:h-6">
                 <path d="M5 12h14M12 5l7 7-7 7" />
@@ -90,6 +126,45 @@ export default function SuccessStories() {
           </div>
         </div>
       </section>
+
+      <ContactModal
+          open={open}
+          onClose={() => setOpen(false)}
+          onSubmit={handleSubmit}
+          fields={[
+            {
+              type: "text",
+              name: "name",
+              label: "Name",
+              placeholder: "Your full name",
+              required: true,
+            },
+            {
+              type: "email",
+              name: "email",
+              label: "Email Id",
+              placeholder: "you@example.com",
+              required: true,
+            },
+            {
+              type: "tel",
+              name: "phone",
+              label: "Phone no",
+              placeholder: "10-digit mobile",
+              required: true,
+            },
+            {
+              type: "select",
+              name: "location",
+              label: "Preferred Location",
+              placeholder: "Choose Location",
+              options: ["Bhattarahalli", "Kalyan Nagar", "Hoskote", "Hennur"],
+              required: true,
+            },
+          ]}
+          submitLabel="Submit"
+          subtitle="We’ll call you back to confirm slot."
+        />
 
       <Picture />
       <Pic1 />
