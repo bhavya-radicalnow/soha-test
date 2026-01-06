@@ -54,14 +54,14 @@ export default function EventsConferences() {
             Attended by Dr. Chaithra S K
           </h2>
           
-          {/* <div className="shrink-0">
+          <div className="shrink-0">
             <Link
               href="/layer/gallery"
-              className="inline-flex items-center justify-center rounded-2xl bg-[#8c8c8c] px-8 py-3 text-base font-medium text-white shadow-sm transition hover:bg-gray-600"
+              className="inline-flex items-center justify-center rounded-2xl bg-[#FF70A3] px-8 py-3 text-base font-medium text-white shadow-sm transition hover:bg-gray-600"
             >
               View All
             </Link>
-          </div> */}
+          </div>
         </div>
 
         <div className="mt-8">

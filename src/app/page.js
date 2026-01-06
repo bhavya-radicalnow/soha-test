@@ -17,7 +17,7 @@ export default function Home() {
       <FieldOfExpertise />
       <ApproachSection />
       {/* <ExpertAdviceVideos /> */}
-      <PublicationsSection />
+      {/* <PublicationsSection /> */}
       <PatientStories />
       <EventsConferences />
       <FooterCTA />
