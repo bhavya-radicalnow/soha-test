@@ -9,7 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@next/third-parties": "^15.5.0",
+    "@next/third-parties": "^15.5.9",
     "appwrite": "^18.2.0",
     "clsx": "^2.1.1",
     "dompurify": "^3.2.6",

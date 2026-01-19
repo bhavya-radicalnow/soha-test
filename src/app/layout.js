@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono, Onest } from "next/font/google";
+import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google'
 import 'react-loading-skeleton/dist/skeleton.css';
 
 import "./globals.css";
@@ -27,6 +28,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <GoogleTagManager gtmId="GTM-WTL69B8Z" />
+      {/* <GoogleAnalytics gaId="G-BLE2R0VPP6" />    */}
       <body
         className={`${onest.variable} font-sans antialiased`} suppressHydrationWarning
         >
