@@ -25,20 +25,20 @@ export default function EventsConferences() {
 
   const events = [
     {
-      img: "/event-2022.webp",
+      img: "/Chennai 2025 (2).webp",
       caption:
         "Speaker at International Conference on Reproductive Health, 2022",
     },
     {
-      img: "/event-2023.webp",
+      img: "/south-4.webp",
       caption: "Guest Lecturer at National Gynaecology Symposium, 2023",
     },
     {
-      img: "/event-2021.webp",
+      img: "/patna-4.webp",
       caption: "Panellist on Women’s Health Summit, 2021",
     },
     {
-      img: "/event(2)-2022.webp",
+      img: "/paper presentation-4.webp",
       caption:
         "Speaker at International Conference on Reproductive Health, 2022",
     },

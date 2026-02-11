@@ -167,11 +167,11 @@ export default function SuccessStories() {
         />
 
       <Picture />
-      <Pic1 />
+      {/* <Pic1 />
       <Pic2 />
       <Pic3 />
       <Journey />
-      <Videos />
+      <Videos /> */}
 
     </main>
 
