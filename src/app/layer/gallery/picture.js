@@ -322,12 +322,6 @@ export default function Picture() {
       title: "Gallery Section 10",
       type: "image",
     },
-    {
-      id: 3,
-      src: "",
-      title: "Gallery Section 10",
-      type: "image",
-    },
   ];
 
   const section11Images = [
