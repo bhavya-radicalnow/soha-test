@@ -33,7 +33,7 @@ const jsonLd = {
       "@id": "https://www.drchaithra.com/#physician",
       "name": "Dr Chaithra S K",
       "url": "https://www.drchaithra.com/",
-      "image": "https://www.drchaithra.com/path-to-doctor-photo.jpg", // Remember to update this!
+      "image": "https://www.drchaithra.com/https://www.drchaithra.com/doctor.webp", // Remember to update this!
       "medicalSpecialty": "Reproductive Medicine",
       "description": "Dr. Chaithra S K (MBBS, MS-OBG, FRM, DRM) is an IVF and Reproductive Medicine Specialist at Ovum Fertility, Bangalore.",
       "hasCredential": ["MBBS", "MS-OBG", "FRM", "DRM"],
