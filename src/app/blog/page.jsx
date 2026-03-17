@@ -1,16 +1,18 @@
-import { client } from '../../sanity/client'
+import { client, urlFor } from '../../sanity/client'
 import Link from 'next/link'
+import Image from 'next/image'
 
-// This tells Next.js NEVER to cache this page, so your new posts show up instantly
 export const revalidate = 0; 
 
-// Fetch all posts, ordered by newest first
+// Updated to fetch author data
 async function getPosts() {
   return client.fetch(`*[_type == "post"] | order(publishedAt desc) {
     _id,
     title,
     "slug": slug.current,
-    publishedAt
+    publishedAt,
+    "authorName": author->name,
+    "authorImage": author->image
   }`)
 }
 
@@ -18,28 +20,44 @@ export default async function BlogIndex() {
   const posts = await getPosts()
 
   return (
-    <main className="max-w-4xl mx-auto py-12 px-6">
-      <h1 className="text-4xl font-bold mb-8 text-white">Latest Updates</h1>
-      
-      {posts.length === 0 && (
-        <p className="text-gray-400">No posts found. Check your Sanity Studio!</p>
-      )}
-
-      <div className="grid gap-6">
-        {posts.map((post) => (
-          <Link href={`/blog/${post.slug}`} key={post._id} className="block group">
-            <div className="p-6 border border-gray-800 rounded-lg shadow-sm hover:border-gray-500 transition-colors bg-gray-900">
-              <h2 className="text-2xl font-semibold text-gray-100 group-hover:text-blue-400 transition-colors">
-                {post.title}
-              </h2>
-              {post.publishedAt && (
-                <p className="text-gray-400 mt-2 text-sm">
-                  {new Date(post.publishedAt).toLocaleDateString()}
-                </p>
-              )}
-            </div>
-          </Link>
-        ))}
+    // Hardcoding bg-gray-50 and colorScheme to strictly ignore dark mode
+    <main className="min-h-screen bg-gray-50 py-20 px-6 font-sans" style={{ colorScheme: 'light' }}>
+      <div className="max-w-4xl mx-auto">
+        <div className="grid gap-8">
+          {posts.map((post) => (
+            <Link href={`/blog/${post.slug}`} key={post._id} className="block group">
+              <div className="p-8 rounded-xl border border-gray-200 bg-white transition-shadow hover:shadow-lg">
+                <h2 className="text-3xl font-bold text-black group-hover:text-gray-600 transition-colors mb-6 tracking-tight">
+                  {post.title}
+                </h2>
+                
+                {/* Footer of the card */}
+                <div className="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    {post.authorImage ? (
+                        <div className="w-8 h-8 rounded-full overflow-hidden relative bg-orange-100">
+                          <Image src={urlFor(post.authorImage).url()} alt={post.authorName || 'Author'} fill className="object-cover" />
+                        </div>
+                    ) : (
+                        <div className="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold text-xs">
+                          {post.authorName ? post.authorName.charAt(0) : 'A'}
+                        </div>
+                    )}
+                    <span className="font-mono text-sm text-black">{post.authorName || 'Author'}</span>
+                  </div>
+                  
+                  {post.publishedAt && (
+                    <span className="text-sm text-gray-500 font-mono">
+                      {new Date(post.publishedAt).toLocaleDateString('en-US', {
+                        month: 'long', day: 'numeric', year: 'numeric'
+                      })}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </main>
   )
