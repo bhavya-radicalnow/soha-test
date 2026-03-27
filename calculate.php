@@ -1,18 +1,22 @@
 <?php
-// E-commerce Cart Calculation Script
-// Goal: Calculate a 10% discount on the total amount and return the final price.
 
-$totalAmount = 1000;   // Original total
-$discountRate = 0.10;  // 10% discount
+$totalAmount = 1000;   
+$discountRate = 0.10;  
+$taxRate = 0.05; // 5% tax
 
-// Function to calculate final price after discount
-function getFinalPrice($total, $rate) {
-    $discount = $total * $rate;        // Calculate discount
-    $finalPrice = $total - $discount;  // Subtract discount from total
+function getFinalPrice($total, $discountRate, $taxRate) {
+    // 1️⃣ Calculate discount
+    $discount = $total * $discountRate;        
+    $subtotal = $total - $discount;  
+    $tax = $subtotal * $taxRate;
+    $finalPrice = $subtotal + $tax;
+
     return $finalPrice;
 }
 
 echo "Welcome to the Store!\n";
 echo "Original Total: $" . $totalAmount . "\n";
-echo "Final Price after 10% discount: $" . getFinalPrice($totalAmount, $discountRate) . "\n";
+echo "Final Price after 10% discount and 5% tax: $" . getFinalPrice($totalAmount, $discountRate, $taxRate) . "\n";
+
 ?>
+
