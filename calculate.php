@@ -2,7 +2,7 @@
 
 $totalAmount = 1000;   
 $discountRate = 0.10;  
-$taxRate = 0.05; // 5% tax
+$taxRate = 0.1; // 5% tax
 
 function getFinalPrice($total, $discountRate, $taxRate) {
     // 1️⃣ Calculate discount
