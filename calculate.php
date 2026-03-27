@@ -6,11 +6,11 @@ $totalAmount = 1000;
 $discountRate = 0.10;
 
 function getFinalPrice($total, $rate) {
-    $discount = $total * $rate;
+    $discountVar = $total * $rate;
     
-    $finalPrice = ($total + $discount) + $tax; 
+    $finalPriceVar = ($total + $discountVar) + $tax; 
     
-    return $finalPrice;
+    return $finalPriceVar;
 }
 
 echo "Welcome to the Store!\n";
