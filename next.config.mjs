@@ -8,10 +8,10 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {
-    outputFileTracingRoot: './', 
-  },
-  /* config options here */
+
+  // ✅ moved outside experimental
+  outputFileTracingRoot: "/Users/radicalnow/Downloads/Dr.Chaitra",
+
   compiler: {
     styledComponents: true,
   },

@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
  * Set GSHEET_SCRIPT_URL in .env.local (server-side only).
  */
 
-const SCRIPT_URL = process.env.GSHEET_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbysrhoXweh8doEdJr35f5H53QMfEtwhn60MzYIOypK9QAbWtBbJRK1kprJod1e7OWCc/exec';
+const SCRIPT_URL = process.env.GSHEET_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbwHXJqwr1bfYWP4enNsebMDQ8TlbchP1s0afakyI8bI5SqEfbNXIpnMKEqQ2izCB1eZiQ/exec';
 
 export async function POST(req) {
   try {
@@ -53,10 +53,11 @@ export async function POST(req) {
       scriptResponse = { raw: text };
     }
 
-    // Forward script response
+    //Forward script response
     return NextResponse.json({ forwarded: true, scriptResponse }, { status: 200 });
   } catch (err) {
     console.error("API /api/lead error:", err);
     return NextResponse.json({ error: err.message || String(err) }, { status: 500 });
   }
 }
+
